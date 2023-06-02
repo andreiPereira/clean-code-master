@@ -1,6 +1,6 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { RemoteAuthentication } from './remote-authentication'
 import { HttpPostClientSpy } from '@/data/test/mock-http-client'
+import { mockAuthenication } from '@/domain/test/mock-authentication'
 import faker from 'faker'
 
 type SutTypes = {
@@ -21,7 +21,14 @@ describe('RemoteAuthentication', () => {
   test('Should  call HttpClient with correctURL', async () => {
     const url = faker.internet.url()
     const { sut, httpPostClientSpy } = makeSut(url)
-    await sut.auth()
+    await sut.auth(mockAuthenication())
     expect(httpPostClientSpy.url).toBe(url)
+  })
+
+  test('Should  call HttpPostClient with correctBody', async () => {
+    const { sut, httpPostClientSpy } = makeSut()
+    const authenticationParams = mockAuthenication()
+    await sut.auth(authenticationParams)
+    expect(httpPostClientSpy.body).toEqual(authenticationParams)
   })
 })
