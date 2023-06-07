@@ -4,13 +4,13 @@ import { AuthenticationParams } from '@/domain/usecases/authentication'
 import { InvalidCredentialsError } from '@/domain/errors/invalid-credential-error'
 import { HttpStatusCode } from '@/data/protocols/http/http-response'
 import { UnexpectedError } from '@/domain/errors/unexpected-error'
+import { AccountModel } from '@/domain/models/account-modal'
 
 export class RemoteAuthentication {
   constructor (
-
     private readonly url: string,
-    private readonly httpPostClient: HttpPostClient
-  ) { }
+    private readonly httpPostClient: HttpPostClient<AuthenticationParams, AccountModel>
+  ) {}
 
   async auth (params: AuthenticationParams): Promise<void> {
     const httpResponse = await this.httpPostClient.post({
