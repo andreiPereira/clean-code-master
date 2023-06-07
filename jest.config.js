@@ -16,6 +16,7 @@ module.exports = {
   },
   moduleNameMapper: {
     '@/(.*)': '<rootDir>/src/$1',
-    '\\.scss$': 'identity-obj-proxy'
+    '\\.scss$': 'identity-obj-proxy',
+    '^axios$': require.resolve('axios')
   }
 }
