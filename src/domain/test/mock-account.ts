@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { AccountModel } from '../models/account-modal'
-import { AuthenticationParams } from '../usecases/authentication'
+import { AuthenticationParams } from '@/domain/usecases'
+import { AccountModel } from '../models'
 import faker from 'faker'
 
 export const mockAuthenication = (): AuthenticationParams => ({
